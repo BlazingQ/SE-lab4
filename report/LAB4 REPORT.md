@@ -30,25 +30,33 @@
 
 cpp文件为rand_gene.cpp
 
-作用是根据给定的stdin_format.txt来生成随机的oj样例，并存储到指定文件中
-
 函数：
 
 ```c++
 void generatecase(string format, string outputfp);
 ```
 
+作用是根据给定的stdin_format.txt来生成随机的oj样例，并存储到指定文件中
+
 ### 模块二：exec_test
 
 cpp文件为exec_test.cpp
 
+函数：
+
+```
+
+```
+
 作用是
+
+<img src="image-20221116202841640.png" alt="image-20221116202841640" style="zoom:67%;" />
 
 ## GIT部分
 
-![image-20221114210838355](image-20221114210838355.png)
-
 创建rand_gene分支来完成随机生成输入模块的开发
+
+![image-20221114210838355](image-20221114210838355.png)
 
 在rand_gene分支git commit之后：
 
@@ -64,4 +72,24 @@ git merge rand_gene
 之后再查看分支:
 
 <img src="image-20221116132707018.png" alt="image-20221116132707018" style="zoom:67%;" />
+
+创建新分支exec_test，在第三个分支下写了一些代码，git commit之后，查看git status：
+
+![image-20221116144550095](image-20221116144550095.png)
+
+使用git log查看上一次commit的版本号：
+
+<img src="image-20221116144617224.png" alt="image-20221116144617224" style="zoom:67%;" />
+
+之后`git reset --hard 9db8bfe1`，回退到没有创建新分支的时候，代码回去了，但是分支没有变：
+
+![image-20221116144841792](image-20221116144841792.png)
+
+再借助git reflog查看历史git记录，找到最新的commit（此时git log看不到最新的那次了），把辛辛苦苦写的代码找回来了：
+
+![image-20221116145030307](image-20221116145030307.png)
+
+再次查看git status，仍处于干净的状态：
+
+![image-20221116145126011](image-20221116145126011.png)
 

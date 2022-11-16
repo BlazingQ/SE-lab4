@@ -1,31 +1,24 @@
-//#include<judger.h>
-#include<iostream>
+#include"judger.h"
+/*#include<iostream>
 #include<string>
 #include<vector>
 #include<fstream>
 #include<random>
 #include<stdlib.h>
-using namespace std;
+using namespace std;*/
 
-
-string getfn(string fp)
+void Judger::geneexec(string fp)
 {
-    int backslashpos = fp.find('\\');
-    return fp.substr(backslashpos + 1, fp.size());
+    string cmd = "g++ "+fp+" -o "+fp.substr(0, fp.size()-4);
+    system(cmd.c_str());  
 }
 
-void casetest(string fp1, string fp2, string testcasefp, string outp1, string outp2)
+void Judger::casetest(string fp1, string fp2, string testcasefp, string outp1, string outp2)
 {
     string cmd = "";
-    string fn1 = getfn(fp1);
-    string fn2 = getfn(fp2);
-    cmd = "g++ "+fn1+" -o "+fn1.substr(0, fn1.size()-4); 
+    cmd = fp1.substr(0, fp1.size()-4)+" <"+testcasefp+" >"+outp1;
     system(cmd.c_str());
-    cmd = fn1.substr(0, fn1.size()-4)+" <"+testcasefp+" >"+outp1;
-    system(cmd.c_str());
-    cmd = "g++ "+fn2+" -o "+fn2.substr(0, fn2.size()-4); 
-    system(cmd.c_str());
-    cmd = fn2.substr(0, fn2.size()-4)+" <"+testcasefp+" >"+outp2;
+    cmd = fp2.substr(0, fp2.size()-4)+" <"+testcasefp+" >"+outp2;
     system(cmd.c_str());
 }
 

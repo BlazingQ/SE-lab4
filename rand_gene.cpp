@@ -1,4 +1,4 @@
-#include<judger.h>
+#include"judger.h"
 /*#include<iostream>
 #include<string>
 #include<vector>
@@ -6,9 +6,7 @@
 #include<random>
 using namespace std;*/
 
-const char alphabet[53] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-void generatecase(string format, string outputfp)
+void Judger::generatecase(string format, string outputfp)
 {
     ifstream ifs(format, ios::in);
     ofstream ofs(outputfp, ios::out);
@@ -16,7 +14,7 @@ void generatecase(string format, string outputfp)
     vector<string> testvalues;
     if(!ifs) 
     {
-        cout<<"ERROR OPEN IFS!\n";
+        cout<<"ERROR OPEN IFS1!\n";
         return;
     }
     if(!ofs) 

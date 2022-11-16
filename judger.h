@@ -1,57 +1,37 @@
+#ifndef JUDGER
+#define JUDGER
+
 #include<iostream>
 #include<string>
+#include<cstring>
 #include<vector>
 #include<fstream>
 #include<random>
 #include<stdlib.h>
+#include <dirent.h>
 using namespace std;
 
+const char alphabet[53] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 class Judger
 {
-private:
+public:
     string fp1;
     string fp2;
-    string folder;
-    string stdin_format;
-    vector<string> testvalues;
+    string rootfolder;
 
-public:
-    Judger(string str);
-    ~Judger();
+
+    Judger(){rootfolder = "input";};
     string getfn(string fp);
+    string ftos(string fp);
+    void rmexec(string fp);
+    void GetFileNames(std::string path, std::vector<std::string> &filenames);
+    void GetFolderNames(std::string path, std::vector<std::string> &filenames);
     void generatecase(string format, string outputfp);
+    void geneexec(string fp);
     void casetest(string fp1, string fp2, string testcasefp, string outp1, string outp2);
 };
 
-Judger::Judger(string str)
-{
-    folder = str;
-
-}
-
-Judger::~Judger()
-{
-}
-
-
-
-/*class JudgerInput
-{
-private:
-    string fp1;
-    string fp2;
-public:
-    JudgerInput(string str1, string str2);
-    string getfp(int index);//getfilepath
-    string getfn(int index);//getfilename
-};
-
-JudgerInput::JudgerInput(string str1, string str2)
-{
-    fp1 = str1;
-    fp2 = str2;
-}*/
-
+#endif
 
 
 

@@ -1,13 +1,5 @@
-obj=main.o
-target = main
-CC = g++
-
-$(target) : $(obj)
-
-	   $(CC) $(obj) -o $(target)
-
-%.o :%.cpp
-	   $(CC) $< -c -o $@ -g
+main:
+	g++ judger.h judger.cpp exec_test.cpp rand_gene.cpp -o judger
 
 clean:
-	   rm *.o main
+	   rm judger
