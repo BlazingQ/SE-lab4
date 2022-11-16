@@ -2,6 +2,8 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<random>
+#include<stdlib.h>
 using namespace std;
 
 class Judger
@@ -16,7 +18,9 @@ private:
 public:
     Judger(string str);
     ~Judger();
-    void generatecase(string format);
+    string getfn(string fp);
+    void generatecase(string format, string outputfp);
+    void casetest(string fp1, string fp2, string testcasefp, string outp1, string outp2);
 };
 
 Judger::Judger(string str)

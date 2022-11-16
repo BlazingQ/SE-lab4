@@ -1,19 +1,17 @@
-//#include<judger.h>
-#include<iostream>
+#include<judger.h>
+/*#include<iostream>
 #include<string>
 #include<vector>
 #include<fstream>
 #include<random>
-
-using namespace std;
+using namespace std;*/
 
 const char alphabet[53] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-void generatecase(string format)
+void generatecase(string format, string outputfp)
 {
     ifstream ifs(format, ios::in);
-    const string outfp = "testcases.txt";
-    ofstream ofs(outfp, ios::out);
+    ofstream ofs(outputfp, ios::out);
     string temp;
     vector<string> testvalues;
     if(!ifs) 
@@ -31,11 +29,6 @@ void generatecase(string format)
         ifs>>temp;
         testvalues.push_back(temp);
     }
-    /*while(!testvalues.empty())
-    {
-        cout<<testvalues.back()<<' ';
-        testvalues.pop_back();
-    }*/
     string tmp = "";
     srand(time(NULL));
     for(int i = 0; i != testvalues.size(); ++i)
@@ -81,8 +74,8 @@ void generatecase(string format)
     ofs.close();
 }
 
-int main()
+/*int main()
 {
-    generatecase("stdin_format.txt");
+    generatecase("stdin_format.txt", "testcases.txt");
     return 0;
-}
+}*/
