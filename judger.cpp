@@ -30,7 +30,7 @@ string Judger::ftos(string fp)
 void Judger::rmexec(string fp)
 {
     string cmd = "rm "+fp.substr(0, fp.size()-4);
-    system(cmd.c_str());
+    std::system(cmd.c_str());
 }
 
 void Judger::GetFileNames(std::string path, std::vector<std::string> &filenames)
@@ -74,13 +74,20 @@ int main()
     string format;
     judger.GetFolderNames(judger.rootfolder, foldernames);
     string folder;
+    std::system("mkdir output");
+    ofstream ofs1("output/equal.csv", ios::out);
+    ofs1<<"file1,file2\n";
+    ofstream ofs2("output/inequal.csv", ios::out);
+    ofs2<<"file1,file2\n";
+    ofs1.close();
+    ofs2.close();
+    ofs1.open("output/equal.csv", ios::app);
+    ofs2.open("output/inequal.csv", ios::app);
     for(int i = 0; i != foldernames.size(); ++i)
     {
         folder = foldernames[i];
         judger.GetFileNames(folder, filenames);
         format = folder + "/stdin_format.txt";
-        cout<<"format= "<<format<<endl;
-        judger.generatecase(format, "testcases.txt");
         for(int i = 0; i < filenames.size(); ++i)
         {
             judger.geneexec(filenames[i]);
@@ -89,10 +96,25 @@ int main()
         {
             for(int j = i + 1; j < filenames.size(); ++j)
             {
-                judger.casetest(filenames[i], filenames[j], "testcases.txt",
-                "out1.txt", "out2.txt");
-                cout<<"i = "<<i<<"  out:"<<judger.ftos("out1.txt")<<endl;
-                cout<<"j = "<<j<<"  out:"<<judger.ftos("out2.txt")<<endl;
+                bool flag = 1;
+                for(int k = 0; k != testtimes; ++k)
+                {
+                    judger.generatecase(format, "testcases.txt", k);
+                    judger.casetest(filenames[i], filenames[j], "testcases.txt",
+                    "out1.txt", "out2.txt");
+                    string str1 = judger.ftos("out1.txt");
+                    string str2 = judger.ftos("out2.txt");
+                    if(str1.compare(str2) != 0)
+                        flag = 0;
+                }
+                if(flag == 1)
+                {
+                    ofs1<<filenames[i]<<","<<filenames[j]<<"\n";
+                }
+                else if(flag == 0)
+                {
+                    ofs2<<filenames[i]<<","<<filenames[j]<<"\n";
+                }
             }
         }
         for(int i = 0; i != filenames.size(); ++i)
@@ -101,9 +123,11 @@ int main()
         }
         filenames.clear();//important
     }
-    system("rm out1.txt");
-    system("rm out2.txt");
-    system("rm testcases.txt");
+    ofs1.close();
+    ofs2.close();
+    std::system("rm out1.txt");
+    std::system("rm out2.txt");
+    std::system("rm testcases.txt");
 
     return 0;
 }

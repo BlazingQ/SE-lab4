@@ -6,7 +6,7 @@
 #include<random>
 using namespace std;*/
 
-void Judger::generatecase(string format, string outputfp)
+void Judger::generatecase(string format, string outputfp, int i)
 {
     ifstream ifs(format, ios::in);
     ofstream ofs(outputfp, ios::out);
@@ -28,7 +28,7 @@ void Judger::generatecase(string format, string outputfp)
         testvalues.push_back(temp);
     }
     string tmp = "";
-    srand(time(NULL));
+    srand(time(NULL) + i);
     for(int i = 0; i != testvalues.size(); ++i)
     {
         tmp = testvalues[i];

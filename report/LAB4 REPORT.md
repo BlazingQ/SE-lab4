@@ -93,3 +93,11 @@ git merge rand_gene
 
 ![image-20221116145126011](image-20221116145126011.png)
 
+最后完成了基本内容的代码，发现还没在未git add和git commit情况下用git status。
+
+![image-20221116212526868](image-20221116212526868.png)
+
+git diff内容就很长了，是详细的所有被track内容的增删情况，还有不同分支的。
+
+git add .后：
+
