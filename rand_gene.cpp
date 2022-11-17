@@ -74,6 +74,7 @@ void Judger::generatecase(string format, string outputfp, int i)
 
 /*int main()
 {
-    generatecase("stdin_format.txt", "testcases.txt");
+    Judger judger;
+    judger.generatecase("format.txt", "testcases.txt", 0);
     return 0;
 }*/
